@@ -23,24 +23,32 @@
             var view = new MapView({
                 container: "viewDiv",
                 map: map,
-                center: [-122.31454189379491, 47.662914707228225], // Latitude, longitude
-                zoom: 14
+                center: [-122.33425800221698, 47.636252144942864], // Longitude, latitude
+                zoom: 11
             });
 
             var graphicsLayer = new GraphicsLayer();
             map.add(graphicsLayer);
 
-            // Example data
-            var flowers = [
-                { lat: 47.67075910584363, lng: -122.31515402681624, name: "Gladiolus", fact: "The ancient Greeks believed this flower grew wherever anyone was slain by a sword.", img: "assets/gladiolus.png" },
-                { lat: 34.0522, lng: -118.2437, name: "Lily", fact: "Lilies are beautiful.", img: "path/to/lily.jpg" }
+            // Plant data
+            var plants = [
+                { lat: 47.67075910584363, lng: -122.31515402681624, name: "Sword lily", date: "July 16, 2024", desc: "The ancient Greeks believed this flower grew wherever anyone was slain by a sword.", img: "assets/swordlily.png" },
+                { lat: 47.66952212500001, lng: -122.31559611959425, name: "Lacecap hydrangea", date: "July 3, 2024", desc: "Symbolizing grace, gratitude, and understanding, hydrangeas have deep cultural roots in Japan and China, where they have been cultivated and appreciated for centuries.", img: "assets/lacecap.png" },
+                { lat: 47.669534054398504, lng: -122.31443712786836, name: "Sword lily", date: "July 3, 2024", desc: "Also known as gladiolus flowers, the name derives from the Latin word \"gladius,\" translating to sword.", img: "assets/swordlily2.png" },
+                { lat: 47.66627093037119, lng: -122.312918406971, name: "Oregon grape", date: "July 3, 2024", desc: "Native American tribes of the Pacific Northwest have used preparations from Oregon grape roots to treat stomach problems, hemorrhages, arthritis, and tuberculosis.", img: "assets/oregongrape.png" },
+                { lat: 47.596598947552145, lng: -122.32733792025753, name: "Mophead hydrangea", date: "June 25, 2024", desc: "These hydrangeas can change color based on the pH level of the soil they are grown in. In acidic soils, they tend to produce blue flowers due to the presence of aluminum ions, while in alkaline soils, they produce pink flowers.", img: "assets/mophead.png" },            
+                { lat: 47.66759285152948, lng: -122.31535255702143, name: "Chinese rose", date: "June 25, 2024", desc: "The flowers of the Chinese rose are edible and are sometimes used to make herbal teas, jams, and syrups. In some regions of Asia, the petals are used as a garnish or flavoring in salads and desserts.", img: "assets/chineserose.png" },                                        
+                { lat: 47.66966635905383, lng: -122.31531035987722, name: "Aaron's beard", date: "June 23, 2024", desc: "Named after the biblical figure Aaron, brother of Moses, this plant is a popular choice as a low-maintenance ground cover in landscapes and gardens.", img: "assets/aaron.png" },                                        
             ];
 
-            flowers.forEach(function(flower) {
+            // { lat: , lng: , name: "", date: "", desc: "", img: "" },                                        
+
+
+            plants.forEach(function(plant) {
                 var point = {
                     type: "point",
-                    longitude: flower.lng,
-                    latitude: flower.lat
+                    longitude: plant.lng,
+                    latitude: plant.lat
                 };
 
                 var symbol = {
@@ -53,18 +61,23 @@
                 // Construct popup content programmatically
                 var popupContent = document.createElement("div");
                 var imgElement = document.createElement("img");
-                imgElement.src = flower.img;
+                imgElement.src = plant.img;
                 imgElement.className = "popup-img";
                 imgElement.style.width = "50%";
                 imgElement.style.height = "auto";
                 popupContent.appendChild(imgElement);
 
-                var factElement = document.createElement("div");
-                factElement.textContent = flower.fact;
-                popupContent.appendChild(factElement);
+                var dateElement = document.createElement("div");
+                dateElement.textContent = "Photo taken: " + plant.date;
+                popupContent.appendChild(dateElement);
+                popupContent.innerHTML += "<br>";
+
+                var descElement = document.createElement("div");
+                descElement.textContent = plant.desc;
+                popupContent.appendChild(descElement);
 
                 var popupTemplate = {
-                    title: flower.name,
+                    title: plant.name,
                     content: popupContent
                 };
 
