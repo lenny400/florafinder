@@ -1,1 +1,1 @@
-# florafinder
+# Seattle Plants
