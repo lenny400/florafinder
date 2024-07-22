@@ -16,7 +16,7 @@ html, body, #viewDiv {
     position: absolute;
     top: 0;
     left: 0;
-    width: 25%;
+    width: 20%;
     height: auto;
     background-color: rgb(255, 255, 255, 0.8); /* Grey background with some transparency */
     color: black;
