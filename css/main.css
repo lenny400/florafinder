@@ -25,3 +25,49 @@ html, body, #viewDiv {
     z-index: 1;
     margin: 0.75em;
 }
+
+.styled-filter {
+    position: absolute;
+    top: 200px; /* Adjust this value to control the vertical position */
+    left: 12px;
+    z-index: 10;
+    width: 328px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #4CAF50; /* Green border */
+    background-color: #f9f9f9; /* Light grey background */
+    font-size: 16px;
+    color: #333; /* Dark text color */
+    appearance: none; /* Remove default arrow */
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%234CAF50" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>'); /* Custom arrow */
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+}
+
+.search-input {
+    position: absolute;
+    top: 250px;
+    left: 12px;
+    width: 304px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid #4CAF50;
+    background-color: #f9f9f9;
+    font-size: 16px;
+    color: #333;
+    z-index: 11;
+}
+
+/* smaller laptop screens */
+@media (max-width: 1024px) {
+    .styled-filter {
+        top: 215px;
+        width: 250px;
+    }
+
+    .search-input {
+        top: 260px;
+        width: 226px;
+    }
+}
