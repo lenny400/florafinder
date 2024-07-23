@@ -13,6 +13,7 @@ Seattle is often viewed as a bustling metropolis, with new skyscrapers seemingly
 - [Description](#description)
 - [Installation](#installation)
 - [Features](#features)
+- [Note](#note)
 - [Screenshots](#screenshots)
 - [Contact](#contact)
 - [Acknowledgements](#acknowledgements)
