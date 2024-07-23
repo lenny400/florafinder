@@ -56,7 +56,7 @@ require([
         var count = 0;
         var colorCounts = {};
         graphicsLayer.graphics.items.forEach(function(graphic) {
-            if (view.extent.contains(graphic.geometry)) {
+            if (view.extent.contains(graphic.geometry) && graphic.visible) {
                 count++;
                 var color = graphic.attributes.color;
                 colorCounts[color] = (colorCounts[color] || 0) + 1;
@@ -70,7 +70,6 @@ require([
         var colors = Object.keys(colorCounts);
         var counts = Object.values(colorCounts);
         var backgroundColors = colors.map(function(color) {
-            // Map color names to actual colors if necessary
             return color;
         });
 
@@ -102,7 +101,7 @@ require([
             var imgElement = document.createElement("img");
             imgElement.src = plant.img;
             imgElement.className = "popup-img";
-            imgElement.style.width = "50%";
+            imgElement.style.width = "70%";
             imgElement.style.height = "auto";
             popupContent.appendChild(imgElement);
 
@@ -133,6 +132,19 @@ require([
         updateCounter(); // Update counter after adding plants
     }
 
+    function applyFilters(data) {
+        var selectedColor = document.getElementById("colorFilter").value;
+        var searchInput = document.getElementById("searchInput").value.toLowerCase();
+
+        var filteredPlants = data.filter(function(plant) {
+            var matchesColor = selectedColor === "all" || plant.color === selectedColor;
+            var matchesSearch = plant.name.toLowerCase().includes(searchInput);
+            return matchesColor && matchesSearch;
+        });
+
+        addPlantsToLayer(filteredPlants);
+    }
+
     // Fetch plant data from JSON file
     fetch('assets/plants.json')
         .then(response => response.json())
@@ -140,23 +152,13 @@ require([
             addPlantsToLayer(data);
 
             // Filter functionality
-            document.getElementById("colorFilter").addEventListener("change", function(event) {
-                var selectedColor = event.target.value;
-                var filteredPlants = data.filter(function(plant) {
-                    return selectedColor === "all" || plant.color === selectedColor;
-                });
-                addPlantsToLayer(filteredPlants);
+            document.getElementById("colorFilter").addEventListener("change", function() {
+                applyFilters(data);
             });
 
             // Search functionality
             document.getElementById('searchInput').addEventListener('input', function() {
-                var filter = this.value.toLowerCase();
-                var graphics = graphicsLayer.graphics.items;
-                graphics.forEach(function(graphic) {
-                    var plantName = graphic.popupTemplate.title.toLowerCase();
-                    graphic.visible = plantName.includes(filter);
-                });
-                updateCounter(); // Update counter after search
+                applyFilters(data);
             });
         })
         .catch(error => console.error('Error loading plant data:', error));
