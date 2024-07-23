@@ -1,5 +1,7 @@
 # Seattle Plants Web Map
 
+Project Link: https://lenny400.github.io/seattleplants/
+
 Seattle is often viewed as a bustling metropolis, with new skyscrapers seemingly appearing overnight. However, within this city lies a true urban jungle, where abundant greenery and diverse plant life weave through and envelop the landscape. Explore this web map to discover the rich diversity of fauna across the greater Seattle area.
 
 <p align="center">
@@ -44,8 +46,8 @@ To set up the project locally, follow these steps:
 For best reader accessibility, make sure to press the Dock button (to the left of the X) to display the full popup!
 
 <p align="center">
-    <img src="assets/imgs/acc1.png" alt="Press the dock button!" height="500">
-    <img src="assets/imgs/acc2.png" alt="Opened popup after pressing dock button" height="500">
+    <img src="assets/imgs/acc1.png" alt="Press the dock button!" height="400">
+    <img src="assets/imgs/acc2.png" alt="Opened popup after pressing dock button" height="400">
 </p>
 
 ## Screenshots
@@ -74,8 +76,6 @@ For best reader accessibility, make sure to press the Dock button (to the left o
 ## Contact
 
 Shawn Leonard - [LinkedIn](https://www.linkedin.com/in/shawn-leonard-004592217/) - sleo108@gmail.com
-
-Project Link: https://lenny400.github.io/seattleplants/
 
 Portfolio: https://lenny400.github.io/portfolio-v2/
 
