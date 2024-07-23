@@ -5,18 +5,28 @@ require([
     "esri/layers/GraphicsLayer"
 ], function(Map, MapView, Graphic, GraphicsLayer) {
     var map = new Map({
-        basemap: "streets-navigation-vector"  // Choose a basemap
+        basemap: "streets-navigation-vector"
     });
 
     var view = new MapView({
         container: "viewDiv",
         map: map,
-        center: [-122.33425800221698, 47.636252144942864], // Longitude, latitude
+        center: [-122.33425800221698, 47.636252144942864],
         zoom: 11
     });
 
     var graphicsLayer = new GraphicsLayer();
-    map.add(graphicsLayer);                                      
+    map.add(graphicsLayer);
+
+    function updateCounter() {
+        var count = 0;
+        graphicsLayer.graphics.items.forEach(function(graphic) {
+            if (view.extent.contains(graphic.geometry)) {
+                count++;
+            }
+        });
+        document.getElementById('counterValue').textContent = count;
+    }
 
     function addPlantsToLayer(plants) {
         graphicsLayer.removeAll();
@@ -65,13 +75,13 @@ require([
             });
             graphicsLayer.add(graphic);
         });
+        updateCounter(); // Update counter after adding plants
     }
 
     // Fetch plant data from JSON file
     fetch('assets/plants.json')
         .then(response => response.json())
         .then(data => {
-            // Use the data from JSON file
             addPlantsToLayer(data);
 
             // Filter functionality
@@ -92,7 +102,13 @@ require([
                     var plantName = graphic.popupTemplate.title.toLowerCase();
                     graphic.visible = plantName.includes(filter);
                 });
+                updateCounter(); // Update counter after search
             });
         })
         .catch(error => console.error('Error loading plant data:', error));
+
+    // Update counter when map view extent changes
+    view.watch('extent', function() {
+        updateCounter();
+    });
 });
