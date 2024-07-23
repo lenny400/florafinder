@@ -16,8 +16,7 @@ require([
     });
 
     var graphicsLayer = new GraphicsLayer();
-    map.add(graphicsLayer);
-                                      
+    map.add(graphicsLayer);                                      
 
     function addPlantsToLayer(plants) {
         graphicsLayer.removeAll();
@@ -64,7 +63,6 @@ require([
                 symbol: symbol,
                 popupTemplate: popupTemplate
             });
-
             graphicsLayer.add(graphic);
         });
     }
