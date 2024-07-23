@@ -18,14 +18,60 @@ require([
     var graphicsLayer = new GraphicsLayer();
     map.add(graphicsLayer);
 
+    var ctx = document.getElementById('colorChart').getContext('2d');
+    var colorChart = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: [],
+            datasets: [{
+                data: [],
+                backgroundColor: [],
+                borderColor: '#fff',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                tooltip: {
+                    callbacks: {
+                        label: function(tooltipItem) {
+                            return `${tooltipItem.label}: ${tooltipItem.raw} plants`;
+                        }
+                    }
+                }
+            }
+        }
+    });
+
     function updateCounter() {
         var count = 0;
+        var colorCounts = {};
         graphicsLayer.graphics.items.forEach(function(graphic) {
             if (view.extent.contains(graphic.geometry)) {
                 count++;
+                var color = graphic.attributes.color;
+                colorCounts[color] = (colorCounts[color] || 0) + 1;
             }
         });
         document.getElementById('counterValue').textContent = count;
+        updateColorChart(colorCounts);
+    }
+
+    function updateColorChart(colorCounts) {
+        var colors = Object.keys(colorCounts);
+        var counts = Object.values(colorCounts);
+        var backgroundColors = colors.map(function(color) {
+            return color;
+        });
+
+        colorChart.data.labels = colors;
+        colorChart.data.datasets[0].data = counts;
+        colorChart.data.datasets[0].backgroundColor = backgroundColors;
+        colorChart.update();
     }
 
     function addPlantsToLayer(plants) {
@@ -71,7 +117,10 @@ require([
             var graphic = new Graphic({
                 geometry: point,
                 symbol: symbol,
-                popupTemplate: popupTemplate
+                popupTemplate: popupTemplate,
+                attributes: {
+                    color: plant.color
+                }
             });
             graphicsLayer.add(graphic);
         });

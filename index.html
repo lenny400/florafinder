@@ -1,37 +1,40 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>Seattle Plants</title>
-        <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-        <!-- Intro overlay -->
-        <div class="overlay">
-            <h1>Seattle Plants</h1>
-            <p>Explore the map to discover various plants and their interesting facts.</p>
-        </div>
-        <!-- Search bar -->
-        <input type="text" id="searchInput" placeholder="Search for plants..." class="search-input">
-        <!-- Filter -->
-        <select id="colorFilter" class="styled-filter">
-            <option value="all">All Colors</option>
-            <option value="red">Red</option>
-            <option value="orange">Orange</option>
-            <option value="yellow">Yellow</option>
-            <option value="green">Green</option>
-            <option value="blue">Blue</option>
-            <option value="purple">Purple</option>
-            <option value="pink">Pink</option>
-            <option value="white">White</option>
-        </select>
-        <div id="viewDiv"></div>
-        <!-- Counter for the number of points in view -->
-        <div id="pointCounter" class="counter">Number of plants in view: <span id="counterValue">0</span></div>
-        <!-- Link to ArcGIS JavaScript API -->
-        <script src="https://js.arcgis.com/4.24/"></script>
-        <!-- Link to main.js file -->
-        <script src="main.js"></script>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <title>Seattle Plants</title>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.24/esri/themes/light/main.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Intro overlay -->
+    <div class="overlay">
+        <h1>Seattle Plants</h1>
+        <p>Explore the map to discover various plants and their interesting facts.</p>
+    </div>
+    <!-- Search bar -->
+    <input type="text" id="searchInput" placeholder="Search for plants..." class="search-input">
+    <!-- Filter -->
+    <select id="colorFilter" class="styled-filter">
+        <option value="all">All Colors</option>
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+        <option value="yellow">Yellow</option>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="purple">Purple</option>
+        <option value="pink">Pink</option>
+        <option value="white">White</option>
+    </select>
+    <div id="dashboard">
+        <p>Number of plants in view: <span id="counterValue">0</span></p>
+        <canvas id="colorChart"></canvas>
+    </div>
+    <div id="viewDiv"></div>
+    <!-- Link to ArcGIS JavaScript API -->
+    <script src="https://js.arcgis.com/4.24/"></script>
+    <!-- Link to main.js file -->
+    <script src="main.js"></script>
+</body>
 </html>
