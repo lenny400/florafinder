@@ -48,6 +48,11 @@ require([
     });
 
     function updateCounter() {
+        if (!view.extent) {
+            console.error("Map view extent is not available.");
+            return;
+        }
+
         var count = 0;
         var colorCounts = {};
         graphicsLayer.graphics.items.forEach(function(graphic) {
@@ -65,6 +70,7 @@ require([
         var colors = Object.keys(colorCounts);
         var counts = Object.values(colorCounts);
         var backgroundColors = colors.map(function(color) {
+            // Map color names to actual colors if necessary
             return color;
         });
 
@@ -146,7 +152,6 @@ require([
             document.getElementById('searchInput').addEventListener('input', function() {
                 var filter = this.value.toLowerCase();
                 var graphics = graphicsLayer.graphics.items;
-
                 graphics.forEach(function(graphic) {
                     var plantName = graphic.popupTemplate.title.toLowerCase();
                     graphic.visible = plantName.includes(filter);
