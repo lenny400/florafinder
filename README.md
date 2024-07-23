@@ -46,8 +46,8 @@ To set up the project locally, follow these steps:
 For best reader accessibility, make sure to press the Dock button (to the left of the X) to display the full popup!
 
 <p align="center">
-    <img src="assets/imgs/acc1.png" alt="Press the dock button!" height="350">
-    <img src="assets/imgs/acc2.png" alt="Opened popup after pressing dock button" height="350">
+    <img src="assets/imgs/acc1.png" alt="Press the dock button!" height="400" style="margin-right: 10px;">
+    <img src="assets/imgs/acc2.png" alt="Opened popup after pressing dock button" height="400">
 </p>
 
 ## Screenshots
